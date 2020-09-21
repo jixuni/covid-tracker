@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Cards from "./components/Cards";
 import SearchBar from "./components/SearchBar";
 import dataSearch from "./api/index";
+import Chart from "./components/Graph";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
@@ -18,7 +19,7 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <SearchBar />
+      <Chart />
     </React.Fragment>
   );
 };
