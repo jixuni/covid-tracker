@@ -8,8 +8,8 @@ const App = () => {
   const [countries, setCountries] = useState([]);
 
   const allCountries = async () => {
-    const response = await dataSearch.get("/countries");
-    setCountries([response.data.countries]);
+    const response = await dataSearch.get("/countries/USA");
+    setCountries([response]);
   };
 
   useEffect(() => {
