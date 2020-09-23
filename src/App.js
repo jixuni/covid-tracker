@@ -7,20 +7,34 @@ import Chart from "./components/Graph";
 const App = () => {
   const [countries, setCountries] = useState([]);
 
+  const [deathCount, setDeathsCount] = useState(0);
+  const [recoverCount, setRecoverCount] = useState(0);
+  const [confirmedCount, setConfirmCount] = useState(0);
+
   const allCountries = async () => {
     const response = await dataSearch.get("/countries/USA");
+    const { deaths, confirmed, recovered } = response.data;
+
+    setDeathsCount(deaths.value);
+    setRecoverCount(recovered.value);
+    setConfirmCount(confirmed.value);
+
     setCountries([response]);
   };
 
   useEffect(() => {
     allCountries(countries);
   }, []);
-  console.log(countries);
+  console.log(deathCount, recoverCount, confirmedCount);
 
   return (
-    <React.Fragment>
-      <Chart />
-    </React.Fragment>
+    <div className="ui container">
+      <div className="ui grid">
+        <Cards count={deathCount} name="Total Deaths" />
+        <Cards count={recoverCount} name="Total Recovered" />
+        <Cards count={confirmedCount} name="Total Confirmed" />
+      </div>
+    </div>
   );
 };
 
