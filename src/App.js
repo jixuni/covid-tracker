@@ -3,23 +3,32 @@ import React from "react";
 import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
+import { Typography } from "@material-ui/core";
 
 class App extends React.Component {
   state = {
     data: {},
+    country: "",
   };
 
   async componentDidMount() {
-    const data = await fetchData();
-    this.setState({ data });
+    const fetchedData = await fetchData();
+    this.setState({ data: fetchedData });
   }
+
+  handleCountryChange = async (country) => {
+    const fetchedData = await fetchData(country);
+    this.setState({ data: fetchedData, country: country });
+  };
+
   render() {
-    const { data } = this.state;
+    const { data, country } = this.state;
     return (
       <div className={styles.container}>
+        <Typography variant="h1">Covid 19 world statistics</Typography>
         <Cards data={data} />
-        <CountryPicker />
-        <Chart />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={data} country={country} />
       </div>
     );
   }
