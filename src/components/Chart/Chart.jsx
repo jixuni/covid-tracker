@@ -13,6 +13,7 @@ const Chart = ({ data: { confirmed, deaths, recovered }, country }) => {
     };
     console.log(dailyData);
     fetchAPI();
+    // eslint-disable-next-line
   }, []);
 
   const lineChart =
