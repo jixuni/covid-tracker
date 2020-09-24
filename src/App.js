@@ -1,41 +1,28 @@
-import React, { useEffect, useState } from "react";
-import Cards from "./components/Cards";
-import SearchBar from "./components/SearchBar";
-import dataSearch from "./api/index";
-import Chart from "./components/Graph";
+import React from "react";
 
-const App = () => {
-  const [countries, setCountries] = useState([]);
+import { Cards, Chart, CountryPicker } from "./components";
+import styles from "./App.module.css";
+import { fetchData } from "./api";
 
-  const [deathCount, setDeathsCount] = useState(0);
-  const [recoverCount, setRecoverCount] = useState(0);
-  const [confirmedCount, setConfirmCount] = useState(0);
-
-  const allCountries = async () => {
-    const response = await dataSearch.get("/countries/USA");
-    const { deaths, confirmed, recovered } = response.data;
-
-    setDeathsCount(deaths.value);
-    setRecoverCount(recovered.value);
-    setConfirmCount(confirmed.value);
-
-    setCountries([response]);
+class App extends React.Component {
+  state = {
+    data: {},
   };
 
-  useEffect(() => {
-    allCountries(countries);
-  }, []);
-  console.log(deathCount, recoverCount, confirmedCount);
-
-  return (
-    <div className="ui container">
-      <div className="ui grid">
-        <Cards count={deathCount} name="Total Deaths" />
-        <Cards count={recoverCount} name="Total Recovered" />
-        <Cards count={confirmedCount} name="Total Confirmed" />
+  async componentDidMount() {
+    const data = await fetchData();
+    this.setState({ data });
+  }
+  render() {
+    const { data } = this.state;
+    return (
+      <div className={styles.container}>
+        <Cards data={data} />
+        <CountryPicker />
+        <Chart />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;
