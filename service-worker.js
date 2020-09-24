@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/jixuni/covid-tracker/precache-manifest.e2902af8055583f80bc368f3d16fa841.js"
+  "/jixuni/covid-tracker/precache-manifest.e53b1058fbe773afa2c8533edf9348aa.js"
 );
 
 self.addEventListener('message', (event) => {
