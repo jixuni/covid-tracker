@@ -25,7 +25,9 @@ class App extends React.Component {
     const { data, country } = this.state;
     return (
       <div className={styles.container}>
-        <Typography variant="h1">Covid 19 world statistics</Typography>
+        <Typography className={styles.title} variant="h3">
+          Covid 19 world statistics
+        </Typography>
         <Cards data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange} />
         <Chart data={data} country={country} />
