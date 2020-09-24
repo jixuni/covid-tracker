@@ -17,7 +17,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           item
           component={Card}
           xs={12}
-          // md={3}
+          md={3}
           className={cx(styles.card, styles.infected)}
         >
           <CardContent>
@@ -35,14 +35,16 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Typography color="textSecondary">
               {new Date(lastUpdate).toDateString()}
             </Typography>
-            <Typography variant="body2">Number of infected</Typography>
+            <Typography variant="body2">
+              Number of infected covid-19 cases
+            </Typography>
           </CardContent>
         </Grid>
         <Grid
           item
           component={Card}
           xs={12}
-          // md={3}
+          md={3}
           className={cx(styles.card, styles.recovered)}
         >
           <CardContent>
@@ -60,14 +62,16 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Typography color="textSecondary">
               {new Date(lastUpdate).toDateString()}
             </Typography>
-            <Typography variant="body2">Number of recovery</Typography>
+            <Typography variant="body2">
+              Number of recovery covid-19 cases
+            </Typography>
           </CardContent>
         </Grid>
         <Grid
           item
           component={Card}
           xs={12}
-          // md={3}
+          md={3}
           className={cx(styles.card, styles.deaths)}
         >
           <CardContent>
@@ -85,7 +89,9 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Typography color="textSecondary">
               {new Date(lastUpdate).toDateString()}
             </Typography>
-            <Typography variant="body2">Number of deaths</Typography>
+            <Typography variant="body2">
+              Number of deaths cvoid-19 cases
+            </Typography>
           </CardContent>
         </Grid>
       </Grid>
